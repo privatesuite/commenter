@@ -1,0 +1,14 @@
+{
+
+	"name": "commenter",
+	"main": "src/index.js",
+	"description": "Commenter adds a template, API endpoints, and a page for comments and comment management.",
+
+	"version": "0.0.1",
+	"author": {
+
+		"name": "Private Suite Media LLC"
+
+	}
+
+}
