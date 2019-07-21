@@ -4,6 +4,16 @@
 
 	<%- await view(request, "admin/head") %>
 
+	<style>
+	
+		.comments>* {
+
+			display: inline-block;
+			
+		}
+
+	</style>
+
 </head>
 <body>
 	
@@ -12,12 +22,6 @@
 	<div class="app_body">
 
 		<h1>Comments</h1>
-
-		<div class="panel">
-
-			<h2>Settings</h2>
-
-		</div>
 
 		<div class="panel">
 
@@ -46,6 +50,37 @@
 				</tbody>
 
 			</table>
+
+		</div>
+
+		<div class="panel">
+
+			<h2>Manage Comments</h2>
+
+			<div class="comments">
+
+					<% for (_comment of comments) { %>
+
+						<div class="panel">
+	
+							<h3 style="margin: 0px;"><%= _comment.fields.title %></h3>
+							<span>From <strong><%= _comment.fields.author %></strong> on page <strong><%= elements.find(_ => _.id === _comment.fields.element) ? (elements.find(_ => _.id === _comment.fields.element).fields.title || _comment.fields.element) : _comment.element %></strong> on <strong><%= new Date(_comment.fields.date).toUTCString() %></strong></span>
+
+							<p><%= _comment.fields.content %></p>
+							
+							<form action="/admin/comments/delete_comment" method="POST">
+							
+								<input type="hidden" name="id" value="<%= _comment.id %>">
+
+								<input type="submit" value="Delete" class="btn">
+
+							</form>
+
+						</div>
+	
+					<% } %>
+
+			</div>
 
 		</div>
 

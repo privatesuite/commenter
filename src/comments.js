@@ -18,7 +18,10 @@ module.exports = {
 				author: "string", // The comment's author
 				content: "string", // The comment's content
 
-				api_access: true
+				date: "date", // The comment's post date
+
+				api_access: true,
+				hide_from_elements: true
 
 			}));
 
@@ -38,9 +41,17 @@ module.exports = {
 			author: fields.author + "",
 			content: fields.content + "",
 
+			date: fields.date,
+
 			api_access: true
 
 		}));
+
+	},
+
+	async getComments () {
+
+		return (await contenu.database.elements()).filter(_ => _.template === "commenter_template");
 
 	}
 
